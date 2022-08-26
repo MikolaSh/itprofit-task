@@ -1,0 +1,27 @@
+.bubble{
+    position: absolute;
+    background: linear-gradient(131.29deg, rgba(225, 255, 244, 0.3) 1.1%, rgba(20, 54, 41, 0) 108.32%), radial-gradient(32.42% 32.42% at 46.83% 18.92%, rgba(255, 255, 255, 0.147) 0%, rgba(100, 117, 110, 0) 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */, linear-gradient(0deg, rgba(68, 104, 90, 0.44), rgba(68, 104, 90, 0.44));
+    background-blend-mode: normal, normal, normal, multiply;
+    box-shadow: 8px 24px 60px rgba(21, 53, 30, 0.1), inset 2.29395px 2.29395px 2.29395px rgba(73, 100, 87, 0.05);
+    backdrop-filter: blur(60px);
+    border-radius: 175.3516px;
+    transform: rotate(-20.99deg);
+    &.small {
+      width: 222.85px;
+      height: 222.85px;
+      left: -2px;
+      top: 696.81px;
+    }
+    &.mid {
+      width: 282.76px;
+      height: 282.76px;
+      left: 231px;
+      top: 57.26px;
+    }
+    &.large{
+      width: 330.66px;
+      height: 330.66px;
+      left: 1052px;
+      top: 684.42px;
+    }
+  }
