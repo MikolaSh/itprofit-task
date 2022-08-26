@@ -3,21 +3,22 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 
-const esLintPlugin = (isDev) => (isDev ? [] : [new ESLintPlugin({ extensions: ['ts', 'js'] })]);
-
-const devServer = (isDev) => (!isDev ? {} : {
-  devServer: {
+const esLintPlugin = (isDev) => (isDev ? [] : [ new ESLintPlugin({ extensions: ['ts', 'js'] })]);
+const devServer = (isDev) => !isDev ? {} : {
+devServer: {
     open: true,
-    hot: true,
     port: 8080,
     contentBase: path.join(__dirname, 'public'),
   },
-});
+};
+
 
 module.exports = ({ development }) => ({
   mode: development ? 'development' : 'production',
   devtool: development ? 'inline-source-map' : false,
-  entry: './src/index.ts',
+  entry: {
+    main: './src/index.ts',
+  },
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
@@ -49,14 +50,12 @@ module.exports = ({ development }) => ({
     ],
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      title: 'itprofit-task',
-    }),
+    ...esLintPlugin(development),
     new MiniCssExtractPlugin({ filename: '[name].[contenthash].css' }),
+    new HtmlWebpackPlugin({ template: './src/index.html' }),
   ],
   resolve: {
     extensions: ['.ts', '.js'],
   },
-  ...devServer(development),
-  ...esLintPlugin(development),
+  ...devServer(development)
 });
