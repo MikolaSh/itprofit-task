@@ -1,17 +1,20 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin');
 
-const devServer = (isDev) => !isDev ? {} : {
-    devServer: {
-      open: true,
-      hot: true,
-      port: 8080,
-      contentBase: path.join(__dirname, 'public'),
-    },
-  };
+const esLintPlugin = (isDev) => (isDev ? [] : [new ESLintPlugin({ extensions: ['ts', 'js'] })]);
 
-module.exports = ({development}) =>  ({
+const devServer = (isDev) => (!isDev ? {} : {
+  devServer: {
+    open: true,
+    hot: true,
+    port: 8080,
+    contentBase: path.join(__dirname, 'public'),
+  },
+});
+
+module.exports = ({ development }) => ({
   mode: development ? 'development' : 'production',
   devtool: development ? 'inline-source-map' : false,
   entry: './src/index.ts',
@@ -41,8 +44,8 @@ module.exports = ({development}) =>  ({
       },
       {
         test: /\.s[ac]ss$/i,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
-      }
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+      },
     ],
   },
   plugins: [
@@ -54,5 +57,6 @@ module.exports = ({development}) =>  ({
   resolve: {
     extensions: ['.ts', '.js'],
   },
-  ...devServer(env.development)
+  ...devServer(development),
+  ...esLintPlugin(development),
 });
