@@ -10,6 +10,15 @@ const createCustomCursor = () => {
     (<HTMLDivElement>cursor).style.left = `${posX}px`;
     (<HTMLDivElement>cursor).style.top = `${posY}px`;
   });
+
+  document.querySelectorAll('.slide-button')?.forEach((elem: Element) => {
+    elem.addEventListener('mouseover', () => {
+      cursor?.classList.toggle('grow');
+    });
+    elem.addEventListener('mouseleave', () => {
+      cursor?.classList.toggle('grow');
+    });
+  });
 };
 
 export default createCustomCursor;
