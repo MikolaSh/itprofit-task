@@ -1,22 +1,30 @@
 import textContent from './textContent';
 
-const getBubblesMarkup = () => `
-    <div class="bubble small"></div>
-    <div class="bubble mid"></div>
-    <div class="bubble large"></div>
+const getBubblesMarkup = (contentType: string) => `
+    <div class="test"></div>
+    <div class="bubble ${contentType} small to-right"></div>
+    <div class="bubble ${contentType} mid"></div>
+    <div class="bubble ${contentType} large"></div>
 `;
 
-const getLaptopMarkup = () => `
+const getLaptopMarkup = (contentType: string) => `
     <div class="laptop-wraper">
     <div class="laptop-screen">
-        <div class="laptop-content"></div>
+        <div class="laptop-content ${contentType}-content"></div>
     </div>
     <div class="laptop-keyboard"></div>
     </div>
 `;
 
+const renderSlide = (contentType: string, direction?: string) => `
+    <div class="slide ${direction || ''}">
+      ${getBubblesMarkup(contentType)}
+      ${getLaptopMarkup(contentType)}
+    </div>
+`;
+
 const getContentmarkUp = (contentType: string) => `
-    <div class="content-wraper">
+    <div class="content-wraper hidden">
             <h2 class="service-title">${textContent[contentType].title}</h2>
             <p class="service-description">
                 ${textContent[contentType].description}
@@ -42,11 +50,14 @@ const getContentmarkUp = (contentType: string) => `
         </div>
   `;
 
-const renderContent = (contentType: string): void => {
+const renderContent = (contentType: string, direction?: string): void => {
   const viewer: HTMLDivElement | null = document.querySelector('.viewer');
+  viewer?.classList.add(contentType);
   viewer?.insertAdjacentHTML('beforeend', getContentmarkUp(contentType));
-  viewer?.insertAdjacentHTML('beforeend', getBubblesMarkup());
-  viewer?.insertAdjacentHTML('beforeend', getLaptopMarkup());
+  viewer?.insertAdjacentHTML('afterbegin', renderSlide(contentType, direction));
+  setTimeout(() => {
+    document.querySelector('.content-wraper')?.classList.toggle('hidden');
+  }, 10);
 };
 
 export default renderContent;
