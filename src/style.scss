@@ -20,6 +20,44 @@ html {
   &.green {
     background-color: rgb(141, 189, 186);
   }
+  
+  .slide {
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    position: absolute;
+    z-index: 0;
+    &.to-left {
+      animation: left 1s ease-in
+    }
+    &.to-right {
+      animation: right 1s ease reverse;
+    }
+    &.from-left {
+      animation: left 1s ease reverse;
+    }
+    &.from-right {
+      animation: right 1s ease-in;
+    }
+  }
+}
+
+@keyframes left {
+  from {
+      left: 0;
+  }
+  to {
+      left: -100%;
+  }
+}
+
+@keyframes right {
+  from {
+      left: 100%;
+  }
+  to {
+      left: 0;
+  }
 }
 
 h1,
