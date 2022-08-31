@@ -1,6 +1,6 @@
 import './bubbles.scss';
 
-const bubblesAnimation = (): void => {
+const bubblesAnimation = (): () => void => {
   const smallBubble: HTMLDivElement | null = document.querySelector('.small');
   const midBubble: HTMLDivElement | null = document.querySelector('.mid');
   const largeBubble: HTMLDivElement | null = document.querySelector('.large');
@@ -25,16 +25,23 @@ const bubblesAnimation = (): void => {
   setBubblesAnimation();
 
   const viewer: HTMLElement | null = document.querySelector('.viewer');
-  viewer?.addEventListener('mousemove', (e) => {
-    const viewerWidth = viewer.offsetWidth;
-    const viewerHeight = viewer.offsetHeight;
+  const countCoords = (e: MouseEvent) => {
+    const viewerWidth: number | undefined = viewer?.offsetWidth;
+    const viewerHeight: number | undefined = viewer?.offsetHeight;
 
-    const coordX = e.pageX - viewerWidth / 2;
-    const coordY = e.pageY - viewerHeight / 2;
+    if (viewerWidth && viewerHeight) {
+      const coordX = e.pageX - viewerWidth / 2;
+      const coordY = e.pageY - viewerHeight / 2;
 
-    coordXperc = (coordX / viewerWidth) * 100;
-    coordYperc = (coordY / viewerHeight) * 100;
-  });
+      coordXperc = (coordX / viewerWidth) * 100;
+      coordYperc = (coordY / viewerHeight) * 100;
+    }
+  };
+  viewer?.addEventListener('mousemove', countCoords);
+  const removeAnumation = () => {
+    viewer?.removeEventListener('mousemove', countCoords);
+  };
+  return removeAnumation;
 };
 
 export default bubblesAnimation;

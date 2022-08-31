@@ -1,8 +1,8 @@
 import './cursor.scss';
 
-const createCustomCursor = () => {
+const createCustomCursor = (): () => void => {
   const cursor: HTMLDivElement | null = document.querySelector('.cursor');
-
+  const slideButtons: NodeListOf<Element> = document.querySelectorAll('.slide-button');
   document.addEventListener('mousemove', (e: MouseEvent) => {
     const posX: number = e.clientX;
     const posY: number = e.clientY;
@@ -11,14 +11,26 @@ const createCustomCursor = () => {
     (<HTMLDivElement>cursor).style.top = `${posY}px`;
   });
 
-  document.querySelectorAll('.slide-button')?.forEach((elem: Element) => {
-    elem.addEventListener('mouseover', () => {
-      cursor?.classList.toggle('grow');
+  const increaseCursor = () => {
+    cursor?.classList.add('grow');
+  };
+
+  const reduceCursor = () => {
+    cursor?.classList.remove('grow');
+  };
+
+  const removeListeners = () => {
+    slideButtons.forEach((button) => {
+      button.removeEventListener('mouseover', increaseCursor);
+      button.removeEventListener('mouseleave', reduceCursor);
     });
-    elem.addEventListener('mouseleave', () => {
-      cursor?.classList.toggle('grow');
-    });
+  };
+
+  slideButtons.forEach((elem: Element) => {
+    elem.addEventListener('mouseover', increaseCursor);
+    elem.addEventListener('mouseleave', reduceCursor);
   });
+  return removeListeners;
 };
 
 export default createCustomCursor;
