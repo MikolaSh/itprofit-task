@@ -9,10 +9,12 @@ const getBubblesMarkup = (contentType: string) => `
 
 const getLaptopMarkup = (contentType: string) => `
     <div class="laptop-wraper">
-    <div class="laptop-screen">
-        <div class="laptop-content ${contentType}-content"></div>
-    </div>
-    <div class="laptop-keyboard"></div>
+        <div class="laptop-screen">
+            <div class="laptop-content ${contentType}-content"></div>
+        </div>
+        <div class="laptop-keyboard">
+            <div class="laptop_part"></div>
+        </div>
     </div>
 `;
 

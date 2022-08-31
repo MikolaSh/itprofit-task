@@ -37,9 +37,6 @@ const hideSlide = (direction: string) => {
     slide.remove();
     contentContainer?.remove();
     showSlide(direction === 'to-right' ? 'from-left' : 'from-right');
-
-    // setTimeout(() => {
-    // }, 1800);
   }, { once: true });
 };
 

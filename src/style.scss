@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;1,400;1,500&display=swap');
+
 *{
     box-sizing: border-box;
     margin: 0;
@@ -14,10 +16,10 @@ html {
   position: relative;
   transition: all 1s ease;
 
-  &.purple {
+  &.market {
     background-color: rgba(134, 117, 186);
   }
-  &.green {
+  &.corp {
     background-color: rgb(141, 189, 186);
   }
   
@@ -65,11 +67,12 @@ h2,
 h4{
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
+    color: white;
 }
 
 p{
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 400;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
 }
 
 button {
@@ -96,6 +99,9 @@ button {
     width: 668px;
     height: 432px;
 
+    margin-top: 190px;
+    margin-left: 100px;
+
     backdrop-filter: blur(30px);
     box-shadow: inset 0.860527px 0.860527px 0.860527px rgba(53, 74, 66, 0.2);
     border: 0.5px solid rgba(64, 89, 80, 0.5);
@@ -104,12 +110,21 @@ button {
 
     color: white;
     transition: all 1s ease;
+    position: relative;
 
-    z-index: 2;
+    z-index: 1;
+
+    .buttons-wraper{
+      display: flex;
+      justify-content: space-between;
+      width: 112px;
+      margin: 20px 0 0 20px;
+    }
 
     .service-classifications {
         width: 588px;
         height: 94px;
+        margin: 20px 0 0 20px;
 
         background: rgba(0, 37, 23, 0.2);
         border: 1px solid rgba(226, 226, 226, 0.5);
@@ -123,11 +138,14 @@ button {
             h4 {
                 font-size: 20px;
                 line-height: 28px;
+                margin: 20px 0 0 20px;
             }
 
             p{
                 font-size: 13px;
                 line-height: 18px;
+                margin: 8px 0 0 20px;
+
             }
         }
     }
@@ -137,17 +155,43 @@ button {
     }
 }
 
+h1 {
+  position: relative;
+  margin-top: 100px;
+  margin-left: 100px;
+  font-size: 64px;
+  line-height: 60px;
+  z-index: 2;
+}
+
+h2 {
+  margin: 20px 0 0 20px;
+  font-size: 32px;
+  line-height: 40px;
+}
+
+p{
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 26px;
+  margin: 16px 0 0 20px;
+}
 
 .laptop-wraper{
   width: 1017.27px;
   height: 576.09px;
-  left: 359px;
-  top: 118.03px;
+  left: 344px;
+  top: 148.03px;
   position: absolute;
 
   display: flex;
   flex-direction: column;
   align-items: center;
+  transition: all 1s ease;
+
+  &.hidden-left {
+    left: -100%;
+  }
 
     .laptop-screen {
         width: 773.02px;
@@ -158,11 +202,13 @@ button {
         background: linear-gradient(180deg, rgba(0, 0, 0, 0.4) 70.66%, rgba(51, 51, 51, 0.643) 90.82%, rgba(0, 0, 0, 0.94) 102.78%), linear-gradient(115.51deg, #333333 0%, #596368 53.13%, #333333 100%);
         border: 1.54049px solid #333333;
         border-radius: 18.4858px;
-        transform: rotate(-0.57deg);
 
         .laptop-content {
           width: 742.84px;
           height: 496.84px;
+          position: relative;
+          left: 12px;
+          top: 15px;
           border-radius: 9.24292px 9.24292px 0px 0px;
           &.corp-content{
             background-image: url('./assets/corp-slide.png');
@@ -176,7 +222,17 @@ button {
     .laptop-keyboard {
       width: 1017.27px;
       height: 36.42px;
-      background-image: url('./assets/keyboard.svg');
+      background-image: url(assets/keyboard.svg);
       background-repeat: no-repeat;
+      background-size: cover;
+      .laptop_part{
+        width: 180.45px;
+        height: 18.25px;
+        left: 42%;
+        position: relative;
+        background-image: url(assets/keyboard_part.svg);
+        background-size: contain;
+        background-repeat: no-repeat;
+      }
     }
 }
