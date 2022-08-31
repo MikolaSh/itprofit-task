@@ -164,7 +164,12 @@ button {
           width: 742.84px;
           height: 496.84px;
           border-radius: 9.24292px 9.24292px 0px 0px;
-          background-image: url('./assets/slide1.png');
+          &.corp-content{
+            background-image: url('./assets/corp-slide.png');
+          }
+          &.market-content{
+            background-image: url('./assets/market-slide.png');
+          }
         }
     }
     
